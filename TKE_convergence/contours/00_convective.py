@@ -1,10 +1,10 @@
 # Plots TKE vs. x for a few heights for all nested runs
 
 # Add new colorbars which aren't available in my version of python (i.e. viridis)
-execfile('/Users/lauramazzaro/Documents/Work/Perts/Article/Figures/new_cmaps.py')
+execfile('../../new_cmaps.py')
 
 # Modify plotting parameters!
-execfile('/Users/lauramazzaro/Documents/Work/Perts/Article/Figures/new_params.py')
+execfile('../../new_params.py')
 
 import matplotlib.pyplot as plt
 from scipy.io import loadmat
