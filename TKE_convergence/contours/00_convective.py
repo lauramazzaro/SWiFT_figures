@@ -13,11 +13,11 @@ import matplotlib
 
 # --------- INPUT ----------
 
-crange = [0,1,2,3]
+crange = [0,1,2,2.5]
 
-# ------------- Theta ---------------
+# ------------- NP ---------------
 
-fig,axs = plt.subplots(3,1,figsize=(8,12))
+fig,axs = plt.subplots(4,1,figsize=(10,25))
 
 dh = loadmat('c_008.mat')
 
@@ -32,9 +32,9 @@ axs.flat[0].set_ylabel('z (km)')
 axs.flat[0].set_xlim([0,4.3])
 axs.flat[0].set_xticks([])
 axs.flat[0].set_yticks([0.0,1.0,2.0,3.0])
-axs.flat[0].text(-.5,3,'(a)')
+axs.flat[0].text(-.4,2.8,'(a)')
 
-# ------------- z-force ---------------
+# ------------- z - 1250 ---------------
 
 dh = loadmat('c_009.mat')
 
@@ -49,11 +49,11 @@ axs.flat[1].set_ylabel('z (km)')
 axs.flat[1].set_xlim([0,4.3])
 axs.flat[1].set_xticks([])
 axs.flat[1].set_yticks([0.0,1.0,2.0,3.0])
-axs.flat[1].text(-.5,3,'(b)')
+axs.flat[1].text(-.4,2.8,'(b)')
 
-# ------------- xy-Force  ---------------
+# ------------- z - 5000  ---------------
 
-dh = loadmat('c_010.mat')
+dh = loadmat('c_012.mat')
 
 dy = dh['dy'][0][0]
 
@@ -65,14 +65,31 @@ axs.flat[2].set_ylabel('z (km)')
 axs.flat[2].set_xlabel('x (km)')
 axs.flat[2].set_xlim([0,4.3])
 axs.flat[2].set_yticks([0.0,1.0,2.0,3.0])
-axs.flat[2].text(-.5,3,'(c)')
+axs.flat[2].text(-.4,2.8,'(c)')
+
+# ------------- z - 10000  ---------------
+
+dh = loadmat('c_011.mat')
+
+dy = dh['dy'][0][0]
+
+X = np.arange(dh['TKE_res'].shape[1])*dy/1000
+Z = np.squeeze(np.average(dh['z_axis'][:,:],axis=1))/1000
+im = axs.flat[3].contourf(X,Z,dh['TKE_res'],np.linspace(crange[0],crange[-1],75),cmap=cmaps['viridis'],extend='max')
+
+axs.flat[3].set_ylabel('z (km)')
+axs.flat[3].set_xlabel('x (km)')
+axs.flat[3].set_xlim([0,4.3])
+axs.flat[3].set_yticks([0.0,1.0,2.0,3.0])
+axs.flat[3].text(-.4,2.8,'(d)')
+
 
 plt.tight_layout()
 
 fig.subplots_adjust(bottom=0.2)
 
 cbar_ax = fig.add_axes([0.165,0.1,0.79,0.02])
-fig.colorbar(im,cax=cbar_ax,ticks=crange,orientation='horizontal')
+fig.colorbar(im,cax=cbar_ax,ticks=crange[:-1],orientation='horizontal')
 
 plt.savefig('00_convective.png', dpi=600)
 

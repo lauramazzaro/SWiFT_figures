@@ -7,15 +7,15 @@ params = {
     'image.cmap': 'gray',
     'axes.grid': False,
     'savefig.dpi': 350,  # to adjust notebook inline plot size
-    'axes.labelsize': 24, # fontsize for x and y labels (was 10)
-    'axes.titlesize': 24,
-    'lines.linewidth': 2,
-    'font.size': 24, # was 10
-    'legend.fontsize': 24, # was 10
-    'xtick.labelsize': 24,
-    'ytick.labelsize': 24,
+    'axes.labelsize': 22, # fontsize for x and y labels (was 10)
+    'axes.titlesize': 22,
+    'lines.linewidth': 4,
+    'font.size': 22, # was 10
+    'legend.fontsize': 22, # was 10
+    'xtick.labelsize': 22,
+    'ytick.labelsize': 22,
     #'text.usetex': True,
     'figure.figsize': [3.39, 2.10],
-    'font.family': 'serif',
+    'font.family': 'sans-serif',
 }
 matplotlib.rcParams.update(params)

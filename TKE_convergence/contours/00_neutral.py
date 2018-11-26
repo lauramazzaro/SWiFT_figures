@@ -1,10 +1,10 @@
 # Plots TKE vs. x for a few heights for all nested runs
 
 # Add new colorbars which aren't available in my version of python (i.e. viridis)
-execfile('/Users/lauramazzaro/Documents/Work/Perts/Article/Figures/new_cmaps.py')
+execfile('../../new_cmaps.py')
 
 # Modify plotting parameters!
-execfile('/Users/lauramazzaro/Documents/Work/Perts/Article/Figures/new_params.py')
+execfile('../../new_params.py')
 
 import matplotlib.pyplot as plt
 from scipy.io import loadmat
@@ -13,9 +13,9 @@ import matplotlib
 
 # --------- INPUT ----------
 
-crange = [0,1,2,3]
+crange = [0,0.5,1,1.5]
 
-# ------------- Theta ---------------
+# ------------- NP ---------------
 
 fig,axs = plt.subplots(3,1,figsize=(8,12))
 
@@ -34,7 +34,7 @@ axs.flat[0].set_xticks([])
 axs.flat[0].set_yticks([0.0,1.0,2.0,3.0])
 axs.flat[0].text(-.5,3,'(a)')
 
-# ------------- z-force ---------------
+# ------------- uv-1000 ---------------
 
 dh = loadmat('n_002.mat')
 
@@ -51,21 +51,21 @@ axs.flat[1].set_xticks([])
 axs.flat[1].set_yticks([0.0,1.0,2.0,3.0])
 axs.flat[1].text(-.5,3,'(b)')
 
-## ------------- xy-Force  ---------------
-#
-#dh = loadmat('c_010.mat')
-#
-#dy = dh['dy'][0][0]
-#
-#X = np.arange(dh['TKE_res'].shape[1])*dy/1000
-#Z = np.squeeze(np.average(dh['z_axis'][:,:],axis=1))/1000
-#im = axs.flat[2].contourf(X,Z,dh['TKE_res'],np.linspace(crange[0],crange[-1],75),cmap=cmaps['viridis'],extend='max')
-#
-#axs.flat[2].set_ylabel('z (km)')
-#axs.flat[2].set_xlabel('x (km)')
-#axs.flat[2].set_xlim([0,4.3])
-#axs.flat[2].set_yticks([0.0,1.0,2.0,3.0])
-#axs.flat[2].text(-.5,3,'(c)')
+# ------------- uv-5000 ---------------
+
+dh = loadmat('n_003.mat')
+
+dy = dh['dy'][0][0]
+
+X = np.arange(dh['TKE_res'].shape[1])*dy/1000
+Z = np.squeeze(np.average(dh['z_axis'][:,:],axis=1))/1000
+im = axs.flat[2].contourf(X,Z,dh['TKE_res'],np.linspace(crange[0],crange[-1],75),cmap=cmaps['viridis'],extend='max')
+
+axs.flat[2].set_ylabel('z (km)')
+axs.flat[2].set_xlabel('x (km)')
+axs.flat[2].set_xlim([0,4.3])
+axs.flat[2].set_yticks([0.0,1.0,2.0,3.0])
+axs.flat[2].text(-.5,3,'(c)')
 
 plt.tight_layout()
 
