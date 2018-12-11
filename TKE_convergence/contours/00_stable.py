@@ -17,7 +17,7 @@ crange = [0,0.5,1]
 
 # ------------- NP ---------------
 
-fig,axs = plt.subplots(3,1,figsize=(8,12))
+fig,axs = plt.subplots(4,1,figsize=(8,16))
 
 dh = loadmat('s_001.mat')
 
@@ -34,7 +34,7 @@ axs.flat[0].set_xticks([])
 axs.flat[0].set_yticks([0.0,1.0,2.0,3.0])
 axs.flat[0].text(-.5,3,'(a)')
 
-# ------------- uv-1000 ---------------
+# ------------- uv-5000 ---------------
 
 dh = loadmat('s_002.mat')
 
@@ -51,22 +51,37 @@ axs.flat[1].set_xticks([])
 axs.flat[1].set_yticks([0.0,1.0,2.0,3.0])
 axs.flat[1].text(-.5,3,'(b)')
 
-# ------------- uv-5000 ---------------
+# ------------- w-5000 ---------------
 
-#dh = loadmat('s_003.mat')
-#
-#dy = dh['dy'][0][0]
-#
-#X = np.arange(dh['TKE_res'].shape[1])*dy/1000
-#Z = np.squeeze(np.average(dh['z_axis'][:,:],axis=1))/1000
-#im = axs.flat[2].contourf(X,Z,dh['TKE_res'],np.linspace(crange[0],crange[-1],75),cmap=cmaps['viridis'],extend='max')
-#
-#axs.flat[2].set_ylabel('z (km)')
-#axs.flat[2].set_xlabel('x (km)')
-#axs.flat[2].set_xlim([0,4.3])
-#axs.flat[2].set_yticks([0.0,1.0,2.0,3.0])
-#axs.flat[2].text(-.5,3,'(c)')
+dh = loadmat('s_003.mat')
 
+dy = dh['dy'][0][0]
+
+X = np.arange(dh['TKE_res'].shape[1])*dy/1000
+Z = np.squeeze(np.average(dh['z_axis'][:,:],axis=1))/1000
+im = axs.flat[2].contourf(X,Z,dh['TKE_res'],np.linspace(crange[0],crange[-1],75),cmap=cmaps['viridis'],extend='max')
+
+axs.flat[2].set_ylabel('z (km)')
+axs.flat[2].set_xlabel('x (km)')
+axs.flat[2].set_xlim([0,4.3])
+axs.flat[2].set_yticks([0.0,1.0,2.0,3.0])
+axs.flat[2].text(-.5,3,'(c)')
+
+# ------------- uv-3000 ---------------
+
+dh = loadmat('s_004.mat')
+
+dy = dh['dy'][0][0]
+
+X = np.arange(dh['TKE_res'].shape[1])*dy/1000
+Z = np.squeeze(np.average(dh['z_axis'][:,:],axis=1))/1000
+im = axs.flat[3].contourf(X,Z,dh['TKE_res'],np.linspace(crange[0],crange[-1],75),cmap=cmaps['viridis'],extend='max')
+
+axs.flat[3].set_ylabel('z (km)')
+axs.flat[3].set_xlabel('x (km)')
+axs.flat[3].set_xlim([0,4.3])
+axs.flat[3].set_yticks([0.0,1.0,2.0,3.0])
+axs.flat[3].text(-.5,3,'(c)')
 plt.tight_layout()
 
 fig.subplots_adjust(bottom=0.2)

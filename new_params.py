@@ -9,7 +9,7 @@ params = {
     'savefig.dpi': 350,  # to adjust notebook inline plot size
     'axes.labelsize': 22, # fontsize for x and y labels (was 10)
     'axes.titlesize': 22,
-    'lines.linewidth': 4,
+    'lines.linewidth': 2,
     'font.size': 22, # was 10
     'legend.fontsize': 22, # was 10
     'xtick.labelsize': 22,
